@@ -22,6 +22,24 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
     const [usernameVal, setUsernameVal] = useState('')
     const [passwordVal, setPasswordVal] = useState('')
 
+    // ✅ כאן מתחיל ה־useEffect
+    useEffect(() => {
+        const appRoot = document.getElementById('root') // או 'main-container' אם יש לך מזהה שונה
+        if (show && appRoot) {
+            appRoot.style.display = 'none'
+            document.body.style.backgroundColor = '#000000'
+        } else if (appRoot) {
+            appRoot.style.display = ''
+            document.body.style.backgroundColor = ''
+        }
+
+        return () => {
+            if (appRoot) appRoot.style.display = ''
+            document.body.style.backgroundColor = ''
+        }
+    }, [show])
+    // ✅ כאן מסתיים ה־useEffect
+
     const component = show ? (
 <Dialog
     onKeyUp={(e) => {
