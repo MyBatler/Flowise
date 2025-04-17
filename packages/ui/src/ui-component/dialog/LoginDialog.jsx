@@ -23,23 +23,6 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
     const [passwordVal, setPasswordVal] = useState('')
 
     const component = show ? (
-
-useEffect(() => {
-    const appRoot = document.getElementById('root') // או כל קונטיינר שמכיל את התוכן
-
-    if (show && appRoot) {
-        appRoot.style.display = 'none' // הסתרה זמנית
-        document.body.style.backgroundColor = '#000000'
-    } else if (appRoot) {
-        appRoot.style.display = ''
-        document.body.style.backgroundColor = ''
-    }
-
-    return () => {
-        if (appRoot) appRoot.style.display = ''
-        document.body.style.backgroundColor = ''
-    }
-}, [show])
 <Dialog
     onKeyUp={(e) => {
         if (e.key === 'Enter') {
