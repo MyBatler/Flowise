@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { Dialog, DialogActions, DialogContent, Typography, DialogTitle } from '@mui/material'
