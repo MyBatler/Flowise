@@ -31,7 +31,10 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => {
         show={true}
         dialogProps={{ title: 'Login', confirmButtonName: 'Login' }}
         onConfirm={(username, password) => {
-          if (username === 'admin' && password === '1234') {
+if (
+  username === import.meta.env.VITE_FLOWISE_USERNAME &&
+  password === import.meta.env.VITE_FLOWISE_PASSWORD
+) {
             localStorage.setItem('loggedIn', 'true')
             setIsAuthenticated(true)
           } else {
