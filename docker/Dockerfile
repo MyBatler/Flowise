@@ -18,10 +18,6 @@ RUN apk add --no-cache chromium git python3 py3-pip make g++ build-base cairo-de
 # Set the environment variable for Puppeteer to find Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-# ✅ Add these lines for password protection:
-**ENV FLOWISE_USERNAME=admin2511
-**ENV FLOWISE_PASSWORD=20d115ee6376f1018bb7c5cfafaf0671
-
 # Copy Flowise from the build stage
 COPY --from=build /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=build /usr/local/bin /usr/local/bin
