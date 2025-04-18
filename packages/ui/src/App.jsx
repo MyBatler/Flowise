@@ -30,17 +30,21 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => {
       <LoginDialog
         show={true}
         dialogProps={{ title: 'Login', confirmButtonName: 'Login' }}
-        onConfirm={(username, password) => {
-if (
-  username === import.meta.env.VITE_FLOWISE_USERNAME &&
-  password === import.meta.env.VITE_FLOWISE_PASSWORD
-) {
-            localStorage.setItem('loggedIn', 'true')
-            setIsAuthenticated(true)
-          } else {
-            alert('Wrong credentials')
-          }
-        }}
+onConfirm={(username, password) => {
+  console.log('USERNAME ENV:', import.meta.env.VITE_FLOWISE_USERNAME)
+  console.log('PASSWORD ENV:', import.meta.env.VITE_FLOWISE_PASSWORD)
+  console.log('USER INPUT:', username, password)
+
+  if (
+    username === import.meta.env.VITE_FLOWISE_USERNAME &&
+    password === import.meta.env.VITE_FLOWISE_PASSWORD
+  ) {
+    localStorage.setItem('loggedIn', 'true')
+    setIsAuthenticated(true)
+  } else {
+    alert('Wrong credentials')
+  }
+}}
       />
     )}
 
