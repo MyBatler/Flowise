@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { Dialog, DialogActions, DialogContent, Typography, DialogTitle } from '@mui/material'
@@ -22,40 +22,20 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
     const [usernameVal, setUsernameVal] = useState('')
     const [passwordVal, setPasswordVal] = useState('')
 
-    // ✅ כאן מתחיל ה־useEffect
-    useEffect(() => {
-        const appRoot = document.getElementById('root') // או 'main-container' אם יש לך מזהה שונה
-        if (show && appRoot) {
-            appRoot.style.display = 'none'
-            document.body.style.backgroundColor = '#000000'
-        } else if (appRoot) {
-            appRoot.style.display = ''
-            document.body.style.backgroundColor = ''
-        }
-
-        return () => {
-            if (appRoot) appRoot.style.display = ''
-            document.body.style.backgroundColor = ''
-        }
-    }, [show])
-    // ✅ כאן מסתיים ה־useEffect
-
     const component = show ? (
-<Dialog
-    onKeyUp={(e) => {
-        if (e.key === 'Enter') {
-            onConfirm(usernameVal, passwordVal)
-        }
-    }}
-    open={show}
-    fullWidth
-    maxWidth='xs'
-    aria-labelledby='alert-dialog-title'
-    aria-describedby='alert-dialog-description'
-    BackdropProps={{
-        style: { backgroundColor: '#000000' }
-    }}
->            <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
+        <Dialog
+            onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                    onConfirm(usernameVal, passwordVal)
+                }
+            }}
+            open={show}
+            fullWidth
+            maxWidth='xs'
+            aria-labelledby='alert-dialog-title'
+            aria-describedby='alert-dialog-description'
+        >
+            <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
                 {dialogProps.title}
             </DialogTitle>
             <DialogContent>
