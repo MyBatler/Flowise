@@ -37,6 +37,11 @@ export default defineConfig(async ({ mode }) => {
                 '@lezer/highlight': resolve(__dirname, '../../node_modules/@lezer/highlight')
             }
         },
+        define: {
+  'import.meta.env.VITE_FLOWISE_USERNAME': JSON.stringify(process.env.VITE_FLOWISE_USERNAME),
+  'import.meta.env.VITE_FLOWISE_PASSWORD': JSON.stringify(process.env.VITE_FLOWISE_PASSWORD)
+}
+
         root: resolve(__dirname),
         build: {
             outDir: './build'
