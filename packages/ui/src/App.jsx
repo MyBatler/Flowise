@@ -15,6 +15,9 @@ import themes from '@/themes'
 // project imports
 import NavigationScroll from '@/layout/NavigationScroll'
 
+const ENV_USERNAME = import.meta.env.VITE_FLOWISE_USERNAME
+const ENV_PASSWORD = import.meta.env.VITE_FLOWISE_PASSWORD
+
 // ==============================|| APP ||============================== //
 
 const App = () => {
@@ -31,14 +34,11 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => {
         show={true}
         dialogProps={{ title: 'Login', confirmButtonName: 'Login' }}
 onConfirm={(username, password) => {
-  console.log('USERNAME ENV:', import.meta.env.VITE_FLOWISE_USERNAME)
-  console.log('PASSWORD ENV:', import.meta.env.VITE_FLOWISE_PASSWORD)
+  console.log('USERNAME ENV:', ENV_USERNAME)
+  console.log('PASSWORD ENV:', ENV_PASSWORD)
   console.log('USER INPUT:', username, password)
 
-  if (
-    username === import.meta.env.VITE_FLOWISE_USERNAME &&
-    password === import.meta.env.VITE_FLOWISE_PASSWORD
-  ) {
+  if (username === ENV_USERNAME && password === ENV_PASSWORD) {
     localStorage.setItem('loggedIn', 'true')
     setIsAuthenticated(true)
   } else {
