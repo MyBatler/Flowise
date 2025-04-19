@@ -24,4 +24,4 @@ COPY .htpasswd /etc/nginx/.htpasswd
 EXPOSE 80
 
 # הפעל את Flowise ואת NGINX ביחד
-CMD ["/bin/sh", "-c", "cd /app && pnpm start & nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "flowise start & while ! nc -z localhost 3000; do sleep 1; done; nginx -g 'daemon off;'"]
