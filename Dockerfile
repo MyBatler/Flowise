@@ -5,6 +5,8 @@ ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV NODE_OPTIONS=--max-old-space-size=8192
 RUN npm install -g pnpm
+RUN npm install -g flowise
+
 WORKDIR /usr/src
 COPY . .
 RUN pnpm install
@@ -14,6 +16,8 @@ RUN pnpm build
 FROM nginx:alpine
 
 # העתק את Flowise מהבנייה
+COPY --from=build /usr/local/bin/flowise /usr/local/bin/flowise
+COPY --from=build /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=build /usr/src /app
 
 # העתק את קבצי ההגדרה של NGINX וה־.htpasswd
